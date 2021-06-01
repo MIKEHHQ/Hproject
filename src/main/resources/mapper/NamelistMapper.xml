@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.sdu.ise.labs.dao.NamelistMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.sdu.ise.labs.model.Namelist">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="organization" jdbcType="VARCHAR" property="organization" />
+    <result column="telephoneNum" jdbcType="VARCHAR" property="telephonenum" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, organization, telephoneNum, province, email, address
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from namelist
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from namelist
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.sdu.ise.labs.model.Namelist">
+    insert into namelist (id, name, organization, 
+      telephoneNum, province, email, 
+      address)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, 
+      #{telephonenum,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.sdu.ise.labs.model.Namelist">
+    insert into namelist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="organization != null">
+        organization,
+      </if>
+      <if test="telephonenum != null">
+        telephoneNum,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="telephonenum != null">
+        #{telephonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.sdu.ise.labs.model.Namelist">
+    update namelist
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="telephonenum != null">
+        telephoneNum = #{telephonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.sdu.ise.labs.model.Namelist">
+    update namelist
+    set name = #{name,jdbcType=VARCHAR},
+      organization = #{organization,jdbcType=VARCHAR},
+      telephoneNum = #{telephonenum,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="cn.edu.sdu.ise.labs.model.Namelist">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="organization" jdbcType="VARCHAR" property="organization" />
+    <result column="telephoneNum" jdbcType="VARCHAR" property="telephonenum" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, organization, telephoneNum, province, email, address
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from namelist
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from namelist
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.sdu.ise.labs.model.Namelist">
+    insert into namelist (id, name, organization, 
+      telephoneNum, province, email, 
+      address)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, 
+      #{telephonenum,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.sdu.ise.labs.model.Namelist">
+    insert into namelist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="organization != null">
+        organization,
+      </if>
+      <if test="telephonenum != null">
+        telephoneNum,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="telephonenum != null">
+        #{telephonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.sdu.ise.labs.model.Namelist">
+    update namelist
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="telephonenum != null">
+        telephoneNum = #{telephonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.sdu.ise.labs.model.Namelist">
+    update namelist
+    set name = #{name,jdbcType=VARCHAR},
+      organization = #{organization,jdbcType=VARCHAR},
+      telephoneNum = #{telephonenum,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="cn.edu.sdu.ise.labs.model.Namelist">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="organization" jdbcType="VARCHAR" property="organization" />
+    <result column="telephoneNum" jdbcType="VARCHAR" property="telephonenum" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, organization, telephoneNum, province, email, address
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from namelist
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from namelist
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.sdu.ise.labs.model.Namelist">
+    insert into namelist (id, name, organization, 
+      telephoneNum, province, email, 
+      address)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR}, 
+      #{telephonenum,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.sdu.ise.labs.model.Namelist">
+    insert into namelist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="organization != null">
+        organization,
+      </if>
+      <if test="telephonenum != null">
+        telephoneNum,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="telephonenum != null">
+        #{telephonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.sdu.ise.labs.model.Namelist">
+    update namelist
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null">
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="telephonenum != null">
+        telephoneNum = #{telephonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.sdu.ise.labs.model.Namelist">
+    update namelist
+    set name = #{name,jdbcType=VARCHAR},
+      organization = #{organization,jdbcType=VARCHAR},
+      telephoneNum = #{telephonenum,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <resultMap id="BaseResultMap" type="cn.edu.sdu.ise.labs.model.Namelist">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="organization" jdbcType="VARCHAR" property="organization" />
+        <result column="telephone_num" jdbcType="VARCHAR" property="telephoneNum" />
+        <result column="province" jdbcType="VARCHAR" property="province" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="address" jdbcType="VARCHAR" property="address" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        , name, organization, telephone_num, province, email, address
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from namelist
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from namelist
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="cn.edu.sdu.ise.labs.model.Namelist">
+        insert into namelist (id, name, organization,
+                              telephone_num, province, email,
+                              address)
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
+                #{telephoneNum,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+                #{address,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="cn.edu.sdu.ise.labs.model.Namelist">
+        update namelist
+        set name          = #{name,jdbcType=VARCHAR},
+            organization  = #{organization,jdbcType=VARCHAR},
+            telephone_num = #{telephoneNum,jdbcType=VARCHAR},
+            province      = #{province,jdbcType=VARCHAR},
+            email         = #{email,jdbcType=VARCHAR},
+            address       = #{address,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 获取名字个数(分页) -->
+    <select id="count" resultType="integer">
+        select count(*)
+        from namelist
+        <where>
+            <if test="province != null">
+                province like #{province}
+            </if>
+            <if test="name !=null">
+                and name like #{name}
+            </if>
+            <if test="address !=null">
+                and address like #{address}
+            </if>
+            <if test="telephoneNum !=null">
+                and telephoneNum like #{telephoneNum}
+            </if>
+            <if test="email !=null">
+                and email like #{email}
+            </if>
+        </where>
+    </select>
+
+    <!--获取联系人(分页)-->
+    <select id="list" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from namelist
+        <where>
+            <if test="queryDTO.province !=null">
+                province like #{queryDTO.province}
+            </if>
+            <if test="queryDTO.name !=null">
+                and name like #{queryDTO.name}
+            </if>
+            <if test="queryDTO.address !=null">
+                and address like #{queryDTO.address}
+            </if>
+            <if test="queryDTO.email !=null">
+                and email like #{queryDTO.email}
+            </if>
+            <if test="queryDTO.telephoneNum !=null">
+                and telephoneNum like #{queryDTO.telephoneNum}
+            </if>
+        </where>
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--批量删除-->
+    <update id="deleteByCodes">
+        delete from namelist
+        where id in
+        <foreach close=")" collection="ids" index="index" item="item" open="(" separator=",">
+            #{item}
+        </foreach>
+    </update>
+
+</mapper>
