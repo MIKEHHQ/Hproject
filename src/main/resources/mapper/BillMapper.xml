@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.sdu.ise.labs.dao.BillMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.sdu.ise.labs.model.Bill" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="purpose" property="purpose" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DOUBLE" />
+    <result column="consume_time" property="consumeTime" jdbcType="TIMESTAMP" />
+    <result column="consumer" property="consumer" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, purpose, amount, consume_time, consumer, note, created_at, updated_at, created_by, 
+    updated_by
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bill
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bill
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.sdu.ise.labs.model.Bill" >
+    insert into bill (id, purpose, amount, 
+      consume_time, consumer, note, 
+      created_by,
+      updated_by)
+    values (#{id,jdbcType=INTEGER}, #{purpose,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, 
+      #{consumeTime,jdbcType=TIMESTAMP}, #{consumer,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+       #{createdBy,jdbcType=VARCHAR},
+      #{updatedBy,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="cn.edu.sdu.ise.labs.model.Bill" >
+    update bill
+    set purpose = #{purpose,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DOUBLE},
+      consume_time = #{consumeTime,jdbcType=TIMESTAMP},
+      consumer = #{consumer,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_by = #{updatedBy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 获取消费人员名字个数(分页) -->
+  <select id="count" resultType="integer">
+    select count(*)
+    from bill
+    <where>
+      <if test="consumer != null">
+        consumer like #{consumer}
+      </if>
+    </where>
+  </select>
+
+  <!-- 获取部门(分页) -->
+  <select id="list" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from bill
+    <where>
+      <if test="queryDTO.consumer != null">
+        consumer like #{queryDTO.consumer}
+      </if>
+    </where>
+    limit #{offset}, #{limit}
+  </select>
+
+  <!-- 批量删除 -->
+  <update id="deleteByCodes">
+  delete from bill
+  where id in
+    <foreach item="item" index="index" collection="codeList" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+
+  <!-- 按时间范围统计 -->
+  <select id="countTime" resultMap="double">
+    select count(*)
+    from bill
+    <where>
+        <if test="consumer != null">
+            and consumer = #{comsumer}
+        </if>
+        <if test="queryDTO.startDate != null">
+          and time>=#{queryDTO.startDate}
+        </if>
+        <if test="queryDTO.endDate">
+          and time<#{queryDTO.endDate}
+        </if>
+  </select>
+
+  <!--按时间获取登录人账单 -->
+  <select id="listByTime" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from bill
+    <where>
+      <if test="consumer !=null">
+        and consumer = #{consumer}
+      </if>
+      <if test="queryDTO.startDate != null">
+        and time>=#{queryDTO.start6Date}
+      </if>
+      <if test="queryDTO.endDate != null">
+        and time<#{queryDTO.endDate}
+      </if>
+    </where>
+    limit #{offset},#{limit}
+  </select>
+  <!--按月统计支出 -->
+  <select id="listByMonthConsume" resultType = "double">
+    select SUM(amount)
+    from bill
+    <where>
+      <if test="consumer!=null">
+        and consumer = #{consumer}
+      </if>
+      <if test="Year != null">
+        and YEAR(time) = #{Year}
+      </if>
+      <if test="Month != null">
+        and Month(time) =#{Month}
+        and amount < 0
+      </if>
+    </where>
+  </select>
+
+  <!--按月统计总支出收入 -->
+
+</mapper>
